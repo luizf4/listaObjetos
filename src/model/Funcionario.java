@@ -1,23 +1,21 @@
-
 package model;
 
 /**
- *
- * @author Luiz Fernando de Souza Matricula: 225272 OD - Prof.ª Silvia Brunini
- * ADS - Polo Sorocaba
+ * @author Luiz Fernando de Souza Matricula: 225272 OD Prof.ª Silvia Brunini ADS
+ * - Polo Sorocaba
  */
 public class Funcionario {
-    
+
     private String nome;
     private int matricula;
     private double salario;
-    
-    public Funcionario(){
-        
-        this.nome="";
+
+    public Funcionario() {
+
+        this.nome = "";
         this.matricula = 0;
         this.salario = 0;
-        
+
     }
 
     public Funcionario(String nome, int matricula, double salario) {
@@ -52,7 +50,7 @@ public class Funcionario {
 
     @Override
     public String toString() {
-        return "Nome = " + nome + ", matricula= " + matricula 
+        return "Nome = " + nome + ", matricula= " + matricula
                 + ", salario= " + salario;
     }
 
@@ -80,8 +78,5 @@ public class Funcionario {
         }
         return true;
     }
-    
-    
-    
-    
+
 }
