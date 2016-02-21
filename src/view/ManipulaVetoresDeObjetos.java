@@ -4,11 +4,8 @@ import java.util.Scanner;
 import model.Funcionario;
 
 /**
- *
- * @author Luiz
- * 21/02/16 - implementação do método incluir/ trava no menu incluir
- * após igualar o indice do vetor, avisando impossibilidade
- * de inserção de registro.
+ * @author Luiz Fernando de Souza Matricula: 225272 OD - Prof.ª Silvia Brunini
+ * ADS - Polo Sorocaba
  */
 public class ManipulaVetoresDeObjetos {
 
@@ -25,73 +22,81 @@ public class ManipulaVetoresDeObjetos {
         int opcao = -1;
         int matricula = 0;
 
-        do {
-            System.out.println("****MENU****\n"
-                    + "1 - Inserir Funcionário na proxima posição vazia.\n"
-                    + "2 - Procurar por um funcionário por matricula.\n"
-                    + "3 - Procurar por um funcionário por nome.\n"
-                    + "4 - Remover um funcionário por matricula.\n"
-                    + "5 - Alterar o salário de um funcionário por matrícula\n"
-                    + "6 - Mostrar todos os funcionários.\n"
-                    + "7 - Encontrar o maior salário.\n"
-                    + "8 - Finaliza Programa.\n");
+        try {
+            do {
+                System.out.println("****MENU****\n"
+                        + "1 - Inserir Funcionário na proxima posição vazia.\n"
+                        + "2 - Procurar por um funcionário por matricula.\n"
+                        + "3 - Procurar por um funcionário por nome.\n"
+                        + "4 - Remover um funcionário por matricula.\n"
+                        + "5 - Alterar o salário de um funcionário por matrícula\n"
+                        + "6 - Mostrar todos os funcionários.\n"
+                        + "7 - Encontrar o maior salário.\n"
+                        + "8 - Finaliza Programa.\n");
 
-            opcao = teclado.nextInt();
+                opcao = teclado.nextInt();
 
-            switch (opcao) {
-                case 1:
+                switch (opcao) {
+                    case 1:
 
-                    if (size(vetorFuncionario) != vetorFuncionario.length) {
+                        if (size(vetorFuncionario) != vetorFuncionario.length) {
 
-                        matricula = size(vetorFuncionario);
-                        System.out.println("Nome:");
-                        String nome = linha.next();
-                        System.out.println("Salario:");
-                        double salario = teclado.nextDouble();
+                            matricula = size(vetorFuncionario);
+                            System.out.println("Nome:");
+                            String nome = linha.next();
+                            System.out.println("Salario:");
+                            double salario = teclado.nextDouble();
 
-                        funcionario = new Funcionario(nome, matricula, salario);
+                            funcionario = new Funcionario(nome, matricula, salario);
 
-                        inserir(vetorFuncionario, funcionario, matricula);
+                            inserir(vetorFuncionario, funcionario, matricula);
+
+                            mostrar(vetorFuncionario);
+
+                        } else {
+
+                            System.out.println("\n****Não existe posição"
+                                    + " vazia na lista****\n");
+
+                        }
+
+                        break;
+                    case 2:
+
+                        System.out.println(size(vetorFuncionario));
+
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                    case 6:
 
                         mostrar(vetorFuncionario);
 
-                    } else {
+                        break;
+                    case 7:
+                        break;
+                    case 8:
 
-                        System.out.println("\n****Não existe posição"
-                                + " vazia na lista****\n");
+                        System.out.println("\nFim do Programa!");
 
-                    }
+                        break;
+                    default:
+                        System.out.println("\nOpção Inválida.");
 
-                    break;
-                case 2:
+                }
+                System.out.println();
+            } while (opcao != 8);
+        } catch (Exception ex) {
 
-                    System.out.println(size(vetorFuncionario));
+            System.out.println("\nErro : "
+                    + ex.getMessage());
+            ex.printStackTrace();
 
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    break;
-                case 6:
-
-                    mostrar(vetorFuncionario);
-
-                    break;
-                case 7:
-                    break;
-                case 8:
-
-                    System.out.println("\nFim do Programa!");
-
-                    break;
-                default:
-                    System.out.println("\nOpção Inválida.");
-
-            }
-            System.out.println();
-        } while (opcao != 8);
+        }
 
         teclado.close();
         linha.close();
