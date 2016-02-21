@@ -6,6 +6,9 @@ import model.Funcionario;
 /**
  *
  * @author Luiz
+ * 21/02/16 - implementação do método incluir/ trava no menu incluir
+ * após igualar o indice do vetor, avisando impossibilidade
+ * de inserção de registro.
  */
 public class ManipulaVetoresDeObjetos {
 
