@@ -1,5 +1,6 @@
 package view;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import model.Funcionario;
 
@@ -103,6 +104,12 @@ public class ManipulaVetoresDeObjetos {
 
     }
 
+    /**
+     * Método que retorna a quantidade de registros.
+     *
+     * @param funcVetor
+     * @return
+     */
     public static int size(Funcionario[] funcVetor) {
 
         int cont = 0;
@@ -116,6 +123,14 @@ public class ManipulaVetoresDeObjetos {
         return cont;
     }
 
+    /**
+     * método para inserir o Funcionário passando como parâmetro o Vetor, o
+     * funcionário e a posiçao, que é obtida pelo métodos size.
+     *
+     * @param vetFunc
+     * @param f
+     * @param posicao
+     */
     public static void inserir(Funcionario[] vetFunc, Funcionario f, int posicao) {
 
         if (size(vetFunc) < vetFunc.length) {
@@ -138,6 +153,12 @@ public class ManipulaVetoresDeObjetos {
         }
     }
 
+    /**
+     * Método que insere diretamente o funcionario, passando como parâmetro o
+     * vetor e funcionário.
+     *
+     * @param f
+     */
     public static void inserir(Funcionario[] vetorFunc, Funcionario f) {
 
         if (size(vetorFunc) < vetorFunc.length) {
