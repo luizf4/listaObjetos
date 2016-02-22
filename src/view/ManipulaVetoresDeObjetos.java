@@ -22,6 +22,7 @@ public class ManipulaVetoresDeObjetos {
 
         int opcao = -1;
         int matricula = 0;
+        String nome = null;
 
         try {
             do {
@@ -42,17 +43,25 @@ public class ManipulaVetoresDeObjetos {
 
                         if (size(vetorFuncionario) != vetorFuncionario.length) {
 
-                            matricula = size(vetorFuncionario);
+                            matricula = size(vetorFuncionario) + 10;
                             System.out.println("Nome:");
-                            String nome = linha.next();
+                            nome = linha.next().toUpperCase();
                             System.out.println("Salario:");
                             double salario = teclado.nextDouble();
 
-                            funcionario = new Funcionario(nome, matricula, salario);
+                            funcionario = new Funcionario(nome, matricula,
+                                    salario);
 
-                            inserir(vetorFuncionario, funcionario, matricula);
+                            if (inserirFuncionario(vetorFuncionario,
+                                    funcionario, matricula) != false) {
 
-                            mostrar(vetorFuncionario);
+                                mostrarFuncionario(vetorFuncionario);
+
+                            } else {
+
+                                System.out.println("\nNão foi possivel inserir "
+                                        + "o registro na Lista!\n");
+                            }
 
                         } else {
 
@@ -64,18 +73,53 @@ public class ManipulaVetoresDeObjetos {
                         break;
                     case 2:
 
-                        System.out.println(size(vetorFuncionario));
+                        System.out.println("\nDigite o N.º de MATRICULA do Funcionário.\n");
+                        matricula = teclado.nextInt();
+
+                        funcionario = procurarMatricula(vetorFuncionario, matricula);
+
+                        if (funcionario == null) {
+
+                            System.out.println("\nNão Encontrou\n");
+                        } else {
+                            System.out.println(funcionario.toString());
+                        }
 
                         break;
                     case 3:
+
+                        System.out.println("\nDigite o NOME do Funcionário.\n");
+                        nome = linha.next().toUpperCase();
+
+                        matricula = procurarNome(vetorFuncionario, nome);
+
+                        if (matricula == -1) {
+
+                            System.out.println("\nNão Encontrou\n");
+
+                        } else {
+
+                            System.out.println("\nO Funcionário " + nome
+                                    + " está registrado na matricula: "
+                                    + matricula + " !!!\n");
+
+                        }
+
                         break;
                     case 4:
+
+                        System.out.println("\nDigite a MATRICULA para REMOVER um Funcionário.\n");
+                        matricula = teclado.nextInt();
+
+                        removerFuncionario(vetorFuncionario, matricula);
+
                         break;
                     case 5:
+
                         break;
                     case 6:
 
-                        mostrar(vetorFuncionario);
+                        mostrarFuncionario(vetorFuncionario);
 
                         break;
                     case 7:
@@ -131,7 +175,7 @@ public class ManipulaVetoresDeObjetos {
      * @param f
      * @param posicao
      */
-    public static void inserir(Funcionario[] vetFunc, Funcionario f, int posicao) {
+    public static boolean inserirFuncionario(Funcionario[] vetFunc, Funcionario f, int posicao) {
 
         if (size(vetFunc) < vetFunc.length) {
 
@@ -150,33 +194,91 @@ public class ManipulaVetoresDeObjetos {
             }
             vetFunc[posicao] = f;
 
+            return true;
+
         }
+
+        return false;
     }
 
     /**
-     * Método que insere diretamente o funcionario, passando como parâmetro o
-     * vetor e funcionário.
+     * Método que mostra todos os funcionarios
      *
-     * @param f
+     * @param vetFuncionario
      */
-    public static void inserir(Funcionario[] vetorFunc, Funcionario f) {
+    public static void mostrarFuncionario(Funcionario[] vetFuncionario) {
 
-        if (size(vetorFunc) < vetorFunc.length) {
+        for (int i = 0; i < size(vetFuncionario); i++) {
 
-            vetorFunc[size(vetorFunc)] = f;
-
-        }
-
-    }
-
-    public static void mostrar(Funcionario[] vetorFunc) {
-
-        for (int i = 0; i < size(vetorFunc); i++) {
-
-            System.out.println("Funcionário " + vetorFunc[i]);
+            System.out.println("Funcionário " + vetFuncionario[i]);
 
         }
 
     }
 
+    public static Funcionario procurarMatricula(Funcionario[] vetFuncionario,
+            int matricula) {
+
+        Funcionario funcionario = new Funcionario("", 0, 0);
+
+        for (int i = 0; i < size(vetFuncionario); i++) {
+
+            if (vetFuncionario[i].getMatricula() == matricula) {
+
+                funcionario.setMatricula(vetFuncionario[i].getMatricula());
+                funcionario.setNome(vetFuncionario[i].getNome());
+                funcionario.setSalario(vetFuncionario[i].getSalario());
+
+                return funcionario;
+            }
+
+        }
+
+        return null;
+    }
+
+    public static int procurarNome(Funcionario[] vetFuncionario, String nome) {
+
+        for (int i = 0; i < size(vetFuncionario); i++) {
+
+            if (vetFuncionario[i].getNome().equals(nome)) {
+
+                int matricula = vetFuncionario[i].getMatricula();
+
+                return matricula;
+            }
+
+        }
+
+        return -1;
+    }
+
+    public static Funcionario removerFuncionario(Funcionario[] vetFuncionario,
+            int matricula) {
+
+        for (int i = 0; i < size(vetFuncionario) - 1; i++) {
+
+            if (vetFuncionario[i].getMatricula() == matricula) {
+
+                vetFuncionario[i] = vetFuncionario[i + 1];
+
+            }
+
+        }
+        vetFuncionario[size(vetFuncionario) - 1] = null;
+
+        return null;
+
+    }
+
+    public static boolean alterarSalario(Funcionario[] vetFuncionario,
+            int matricula, double novoSalario) {
+
+        return false;
+    }
+
+    public static double encontrarMaiorSalario(Funcionario[] vetFuncionario) {
+
+        return 0.0;
+    }
 }
